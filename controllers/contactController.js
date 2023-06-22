@@ -12,6 +12,15 @@ const getContacts = (req, res) => {
 // access public
 
 const createContact = (req, res) => {
+  console.log("REQ.BODY", req.body);
+
+  const {name, email, phone} = req.body
+
+  if(!name || !email || !phone){
+    res.status(400)
+    throw new Error("All fields are required!")
+  }
+
   res.status(201).json({ message: "Create contact"})
 }
 // GET get a contact contact
@@ -20,6 +29,7 @@ const createContact = (req, res) => {
 
 const getContact = (req, res) => {
   res.status(200).json({ message: `Get contact for ${req.params.id}`})
+
 }
 // PUT create contact
 // PUT /api/contacts/:id
